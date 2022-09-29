@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
-// import { useAuthStore } from '../store/auth.js';
+import { useAuthStore } from '../store/auth.js';
 
 import OverviewCategory from '../pages/categorieën/Overview.vue'
 import EditCategory from '../pages/categorieën/edit.vue'
@@ -14,7 +14,7 @@ import ShowTicket from '../pages/ticket/show.vue'
 
 import EditResponse from '../pages/response/edit.vue'
 
-// import OverviewUser from '../pages/user/userhome.vue'
+import OverviewUser from '../pages/user/userhome.vue'
 // import Login from '../pages/auth/login.vue'
 // import Register from '../pages/auth/register.vue'
 
@@ -36,7 +36,7 @@ export const router = createRouter({
 
   { path: '/response/edit/:id', name: 'response', component: EditResponse },
 
-  // { path: '/user', name: 'userHome', component: OverviewUser },
+  { path: '/user', name: 'userHome', component: OverviewUser },
   // { path: '/account/login', name: 'login', component: Login },
   // { path: '/account/register', name: 'register', component: Register },
   

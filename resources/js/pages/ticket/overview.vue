@@ -8,7 +8,7 @@
             <th>category</th>
             <th>created by</th>
             <th>assigend to</th>
-            <th>edit</th>
+            <th v-if="adminCheck()">edit</th>
         </tr>
         <tr v-for="(ticket, index) in tickets" :key="ticket.id">
             <template v-if="!(ticket.status == 3)">
@@ -22,7 +22,7 @@
                 <td></td>
                 <td>{{ ticket.createdBy }}</td>
                 <td>{{ ticket.assigendTo }}</td>
-                <td>
+                <td v-if="adminCheck()">
                     <button
                         @click="
                             $router.push({
@@ -42,13 +42,13 @@
 <script setup>
 import { ref } from "vue";
 import { useTicketStore } from "../../store/ticket.js";
-// import { useAuthStore } from "../../store/auth.js";
+import { useAuthStore } from "../../store/auth.js";
 import { useTicketCategoryStore } from "../../store/ticketcategory.js";
 import { storeToRefs } from "pinia";
 
 const ticketStore = useTicketStore();
 const { tickets } = storeToRefs(ticketStore);
 const { deleteTicket } = ticketStore;
-// const authStore = useAuthStore();
-// const { adminCheck } = authStore;
+const authStore = useAuthStore();
+const { adminCheck } = authStore;
 </script>

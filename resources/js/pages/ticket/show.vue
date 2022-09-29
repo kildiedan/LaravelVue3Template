@@ -12,13 +12,13 @@
         {{ categoryStore.getCategoryById(ticketCategory.categoryId).name }}
     </p>
     <h3>status</h3>
-    <select v-model="ticket.status">
+    <select v-if="adminCheck()" v-model="ticket.status">
         <option disabled value="0">empty</option>
         <option v-for="status in statuses" v-bind:value="status.id">
             {{ status.title }}
         </option>
     </select>
-    <!-- <p v-else>{{ statusStore.getStatusById(ticket.status).title }}</p> -->
+    <p v-else>{{ statusStore.getStatusById(ticket.status).title }}</p>
 
     <h3>content</h3>
     <p>{{ ticket.content }}</p>
@@ -27,17 +27,17 @@
     <p>{{ ticket.createdBy }}</p>
 
     <h3>assigend to</h3>
-    <select v-model="ticket.assigendTo">
+    <select v-if="adminCheck()" v-model="ticket.assigendTo">
         <option disabled value="0">empty</option>
         <option v-for="user in users" v-bind:value="user.id">
             {{ user.firstName }} {{ user.lastName }}
         </option>
     </select>
-    <!-- <p v-else>{{ getUserName(ticket.assigendTo) }}</p>
+    <p v-else>{{ getUserName(ticket.assigendTo) }}</p>
     <h3>created at</h3>
     <p>{{ ticket.createdAt }}</p>
     <h3>updated at</h3>
-    <p>{{ ticket.updatedAt }}</p> -->
+    <p>{{ ticket.updatedAt }}</p>
 
     <h3>responses</h3>
     <template v-for="(response, index) in responses" :key="response.id">
@@ -55,7 +55,7 @@ import { useResponseStore } from "../../store/response.js";
 import { useTicketCategoryStore } from "../../store/ticketcategory.js";
 import { useCategoryStore } from "../../store/category.js";
 import { useStatusStore } from "../../store/status.js";
-// import { useAuthStore } from "../../store/auth.js";
+import { useAuthStore } from "../../store/auth.js";
 import { useUserStore } from "../../store/user.js";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
@@ -73,10 +73,10 @@ const ticketCategory =
     ticketCategoryStore.getTicketCategoryByTicketId(ticketId);
 const responses = responseStore.getResponseByTicketId(ticketId);
 
-// const authStore = useAuthStore();
+const authStore = useAuthStore();
 const userStore = useUserStore();
 const { users } = storeToRefs(userStore);
 const { statuses } = storeToRefs(statusStore);
 const { getUserName } = userStore;
-// const { adminCheck } = authStore;
+const { adminCheck } = authStore;
 </script>
