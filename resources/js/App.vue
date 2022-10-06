@@ -8,7 +8,7 @@ const { adminCheck } = authStore;
     <h1>Laravel 9 & Vue3</h1>
 
     <ul>
-        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/tickets">Home</router-link></li>
         <li><router-link to="/user">UserHome</router-link></li>
         <li v-if="adminCheck()">
             <router-link to="/category">categories</router-link>

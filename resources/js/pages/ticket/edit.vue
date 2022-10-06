@@ -1,20 +1,20 @@
 <template>
-  <h2>tickets</h2>
+    <h2>tickets</h2>
 
-  <h3>titel</h3>
-  <input type="string" v-model="ticket.title" />
+    <h3>titel</h3>
+    <input type="string" v-model="ticket.title" />
 
-  <h3>content</h3>
-  <input type="string" v-model="ticket.content" />
+    <h3>content</h3>
+    <input type="string" v-model="ticket.content" />
 
-  <h3>assigend to</h3>
-  <input type="number" v-model="ticket.assigendTo" />
-  <button @click="{ name: 'ticketShow', params: { id: ticketId } }">
-    Annuleren
-  </button>
-  <button @click="{ name: 'ticketShow', params: { id: ticketId } }">
-    Aanpassen
-  </button>
+    <h3>assigend to</h3>
+    <input type="number" v-model="ticket.assigendTo" />
+    <button @click="{ name: 'ticketShow', params: { id: ticketId } }">
+        Annuleren
+    </button>
+    <button @click="{ name: 'ticketShow', params: { id: ticketId } }">
+        Aanpassen
+    </button>
 </template>
 
 <script setup>

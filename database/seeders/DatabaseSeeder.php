@@ -3,6 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Category;
+use App\Models\Response;
+use App\Models\Status;
+use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,12 +26,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $this->call([
-            UserSeeder::class,
-            TicketSeeder::class,
-            StatusSeeder::class,
-            ResponseSeeder::class,
-            CategorySeeder::class
-        ]);
+        User::factory()->count(10)->create();
+        Status::factory()->count(3)->create();
+        Response::factory()->count(10)->create();
+        Category::factory()->count(10)->create();
+        Ticket::factory()->count(10)->create();
     }
 }

@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Response extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'content'
+    ];
+
+    public function tickets()
+    {
+        return $this->belongsTo(Ticket::class);
+    }
 }

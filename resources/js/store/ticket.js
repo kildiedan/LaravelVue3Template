@@ -1,55 +1,42 @@
 import { defineStore } from 'pinia';
 import { useAuthStore } from './auth.js';
+import axios from "axios"
+import { ref, computed } from 'vue';
 
-export const useTicketStore = defineStore('ticket-store', {
-    id: 'ticket',
-  state: () => ({
-    tickets: [{
-      id: 1,
-      title: 'test title',
-      content: 'some content',
-      createdBy: 2,
-      assigendTo: 1,
-      status: 1,
-      created_at: null,
-      updated_at: null,
-    },
-    {
-      id: 2,
-      title: 'test answer',
-      content: 'some content',
-      createdBy: 1,
-      assigendTo: 2,
-      status: 1,
-      created_at: null,
-      updated_at: null,
-    },
-    ],
-    nextId: 8,
-  }),
-  getters: {
-    getTicketById:state => ticketId => state.tickets.find( ticket => ticket.id === ticketId),
-    madeByUser: state => userId => state.tickets.filter( ticket => ticket.createdBy === userId)
-  },
-  actions: {
-    addTicket(payload) {
-      const authStore = useAuthStore();
-      const { user } = authStore;
-      this.tickets.push({ 
-        title: payload.title, 
-        content: payload.content, 
-        createdBy: user.id, 
-        assigendTo: 0, 
-        id: this.nextId++ , 
-        createdAt: new Date().toLocaleDateString(), 
-        updatedAt: new Date().toLocaleTimeString(),
-      })
-      
-    },
-    deleteTicket(index){
-      this.tickets.splice(index, 1)
-    },
-  },
+export const useTicketStore = defineStore('ticket-store', () => {
+  const tickets = ref([]);
+  const nextId = ref(8)
+  const getTicketById = computed(() => (ticketId) => tickets.value.find( ticket => ticket.id === ticketId))
+  const madeByUser = computed(() => (userId) => tickets.value.filter( ticket => ticket.createdBy === userId))
   
+  const getAll = computed(() => tickets);
+  async function setAll() {
+    const  { data } = await axios.get('api/tickets');
+    tickets.value = data;
+  }
 
+  async function addTicket(payload) {
+    // const authStore = useAuthStore();
+    //   const { user } = authStore;
+   
+
+    await axios.post();
+
+     //   tickets.push({ 
+    //     title: payload.title, 
+    //     content: payload.content, 
+    //     createdBy: user.id, 
+    //     assigendTo: 0, 
+    //     id: nextId++ , 
+    //     createdAt: new Date().toLocaleDateString(), 
+    //     updatedAt: new Date().toLocaleTimeString(),
+    //   })
+
+  }
+
+  function deleteTicket(index) {
+    this.tickets.splice(index, 1)
+  }
+
+  return { tickets, nextId, getAll, getTicketById, madeByUser, addTicket, deleteTicket, setAll }
 })

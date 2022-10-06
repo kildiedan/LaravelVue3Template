@@ -47,8 +47,11 @@ import { useTicketCategoryStore } from "../../store/ticketcategory.js";
 import { storeToRefs } from "pinia";
 
 const ticketStore = useTicketStore();
-const { tickets } = storeToRefs(ticketStore);
-const { deleteTicket } = ticketStore;
 const authStore = useAuthStore();
 const { adminCheck } = authStore;
+console.log(ticketStore.getAll);
+
+const tickets = ticketStore.getAll;
+
+ticketStore.setAll();
 </script>

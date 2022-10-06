@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\StatusController;
+use App\Http\Controllers\TicketCategoryController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +19,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('tickets', [TicketController::class, 'index']);
+
+Route::get('/category', [CategoryController::class, 'index']);
+
+Route::get('/response', [ResponseController::class, 'index']);
+
+Route::get('/status', [StatusController::class, 'index']);
+
+Route::get('/ticketsCategory', [TicketCategoryController::class, 'index']);

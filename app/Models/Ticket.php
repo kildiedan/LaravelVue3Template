@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title', 'content', 'assigendTo', 'createdBy', 'status_id'
+    ];
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 }

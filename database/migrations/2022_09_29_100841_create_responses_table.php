@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('responses', function (Blueprint $table) {
             $table->id();
-            $table->string('content');
+            $table->longText('content');
             $table->foreignId('ticket_id');
             $table->timestamps();
         });

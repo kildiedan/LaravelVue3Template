@@ -1,9 +1,8 @@
 import { defineStore } from 'pinia'
+import { ref, computed } from 'vue';
 
-export const useTicketCategoryStore = defineStore('ticketCategory-store', {
-    id: 'ticketCategory',
-  state: () => ({
-    ticketCategories: [{
+export const useTicketCategoryStore = defineStore('ticketCategory-store', () => {
+  const ticketCategories = ref([{
       id: 1,
       ticketId: 1,
       categoryId: 1,
@@ -15,12 +14,17 @@ export const useTicketCategoryStore = defineStore('ticketCategory-store', {
       categoryId: 1,
 
     },
-    ]
-  }),
-  getters: {    
-    getTicketCategoryByTicketId:state => ticketId => state.ticketCategories.filter( ticketCategories => ticketCategories.ticketId === ticketId)
-  },
-  actions: {},
-  
+    ])
+    const getTicketCategoryByTicketId = computed((ticketId) => ticketCategories.filter( ticketCategories => ticketCategories.ticketId === ticketId))
+    const getAll = computed(() => ticketCategories);
 
-})
+    async function setAll() {
+      //const  { data } = await axios.get('api/tickets');
+      //ticketCategories.value = data;
+    }
+
+    return{getAll, getTicketCategoryByTicketId, setAll}
+  })
+  
+  
+  

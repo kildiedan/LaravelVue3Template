@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('content');
+            $table->longText('content');
+            $table->foreignId('status_id');
+            $table->foreignId('createdBy');
+            $table->foreignId('assigendTo');
             $table->timestamps();
         });
     }
