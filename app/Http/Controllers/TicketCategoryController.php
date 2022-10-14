@@ -10,7 +10,7 @@ class TicketCategoryController extends Controller
     //
     public function index()
     {
-        $Ticket = TicketCategory::all();
-        return $Ticket;
+        $TicketCategory = TicketCategory::all();
+        return $TicketCategory;
     }
 }

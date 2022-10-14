@@ -14,9 +14,9 @@
         "@popperjs/core": "^2.11.5",
         "@vitejs/plugin-vue": "^1.9.4",
         "bootstrap": "^5.2.0",
+        "pinia": "^2.0.23",
         "vite": "^2.6.10",
         "vue": "^3.2.37",
-        "vue-router": "^4.0.13",
-        "pinia": "^2.0.22"
+        "vue-router": "^4.0.13"
     }
 }

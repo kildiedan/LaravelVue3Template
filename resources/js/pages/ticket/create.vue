@@ -6,7 +6,7 @@
     <button @click="$router.push('/')">Annuleren</button>
     <button
         @click="
-            addTicket(ticket);
+            ticketStore.addTicket(ticket);
             $router.push('/');
         "
     >
@@ -19,10 +19,10 @@ import { ref, onMounted } from "vue";
 import { useTicketStore } from "../../store/ticket.js";
 import { storeToRefs } from "pinia";
 
-const store = useTicketStore();
+const ticketStore = useTicketStore();
 const ticket = ref({
     title: "",
     content: "",
+    createdBy: 1,
 });
-const { addTicket } = store;
 </script>

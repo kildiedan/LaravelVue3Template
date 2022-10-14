@@ -25,6 +25,7 @@ import { useRoute } from "vue-router";
 
 const ticketStore = useTicketStore();
 const route = useRoute();
+ticketStore.setAll();
 const ticketId = parseInt(route.params.id);
 const ticket = ticketStore.getTicketById(ticketId);
 </script>

@@ -24,6 +24,7 @@ export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   linkActiveClass: 'active',
    routes: [
+    { path: '/', redirect: {name: 'ticket'} },
   { path: '/tickets', name: 'ticket', component: OverviewTicket },
   { path: '/ticket/assign', name: 'ticketAssign', component: AssignTicket},
   { path: '/ticket/edit/:id', name: 'ticketEdit', component: EditTicket},

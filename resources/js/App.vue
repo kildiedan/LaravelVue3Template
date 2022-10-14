@@ -10,7 +10,7 @@ const { adminCheck } = authStore;
     <ul>
         <li><router-link to="/tickets">Home</router-link></li>
         <li><router-link to="/user">UserHome</router-link></li>
-        <li v-if="adminCheck()">
+        <li>
             <router-link to="/category">categories</router-link>
         </li>
         <a @click="authStore.logout()">Logout</a>

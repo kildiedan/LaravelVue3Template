@@ -3,22 +3,9 @@ import { ref, computed } from 'vue';
 import { useTicketCategoryStore } from './ticketCategory.js'
 
 export const useCategoryStore = defineStore('category-store', () => {
-  const categories = ref( [{
-    id: 1,
-    name: 'urgent',
-  },
-  {
-    id: 2,
-    name: 'basic',
-  },
-  {
-    id: 3,
-    name: 'zebra',
-  },
+  const categories = ref( [])
 
-  ])
-  const nextId = ref(8)
-  const getCategoryById = computed((categoryId) => categories.find( category => category.id === categoryId))
+  const getCategoryById = computed(() => (categoryId) => categories.value.find( category => category.id === categoryId))
   
 
   function addCategory(payload) {
@@ -26,7 +13,8 @@ export const useCategoryStore = defineStore('category-store', () => {
   }
   function deleteCategory(index, id){
     const ticketCategoryStore = useTicketCategoryStore();
-    if (ticketCategoryStore.ticketCategories.filter( ticket => ticket.categoryId === id).length === 0 ){
+    const ticketCategories = ticketCategoryStore.getAll
+    if (ticketCategories.filter( ticket => ticket.categoryId === id).length === 0 ){
       if(confirm("Do you really want to delete?")){
         this.categories.splice(index, 1)
       }
@@ -36,6 +24,11 @@ export const useCategoryStore = defineStore('category-store', () => {
     }
     
   }
+  const getAll = computed(() => categories);
+  async function setAll() {
+    const  { data } = await axios.get('api/category');
+    categories.value = data;
+  }
 
-  return { categories, nextId, getCategoryById, addCategory, deleteCategory}
+  return { getCategoryById, getAll, setAll, addCategory, deleteCategory}
 })

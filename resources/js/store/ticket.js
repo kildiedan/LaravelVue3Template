@@ -6,7 +6,7 @@ import { ref, computed } from 'vue';
 export const useTicketStore = defineStore('ticket-store', () => {
   const tickets = ref([]);
   const nextId = ref(8)
-  const getTicketById = computed(() => (ticketId) => tickets.value.find( ticket => ticket.id === ticketId))
+  const getTicketById = ticketId => computed(()  => tickets.value.find(ticket => ticket.id === ticketId))
   const madeByUser = computed(() => (userId) => tickets.value.filter( ticket => ticket.createdBy === userId))
   
   const getAll = computed(() => tickets);
@@ -16,22 +16,14 @@ export const useTicketStore = defineStore('ticket-store', () => {
   }
 
   async function addTicket(payload) {
-    // const authStore = useAuthStore();
-    //   const { user } = authStore;
-   
-
-    await axios.post();
-
-     //   tickets.push({ 
-    //     title: payload.title, 
-    //     content: payload.content, 
-    //     createdBy: user.id, 
-    //     assigendTo: 0, 
-    //     id: nextId++ , 
-    //     createdAt: new Date().toLocaleDateString(), 
-    //     updatedAt: new Date().toLocaleTimeString(),
-    //   })
-
+    try{
+      await axios.post('api/tickets', payload);
+    }
+    catch(error) {
+      alert(error)
+      console.log(error)
+    }
+  
   }
 
   function deleteTicket(index) {

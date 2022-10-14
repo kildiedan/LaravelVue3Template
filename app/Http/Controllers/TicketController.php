@@ -18,4 +18,21 @@ class TicketController extends Controller
         $Ticket = Ticket::findOrFail($request->id)->delete();
         return Ticket::all();
     }
+    public function store(Request $request)
+    {
+        // $validated = $this->validate($request, [
+        //     'title' => 'required',
+        //     'content' => 'required',
+        //     'createdBy' => 'required',
+        // ]);
+
+        $Ticket = Ticket::create([
+            'title' => $request['title'],
+            'content' => $request['content'],
+            'assigendTo' => null,
+            'createdBy' => $request['createdBy'],
+            'status_id' => 1,
+
+        ]);
+    }
 }

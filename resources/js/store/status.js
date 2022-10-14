@@ -15,13 +15,13 @@ export const useStatusStore = defineStore('status-store', () => {
     title: 'Afgehandeld',
   }
   ])
-  const getStatusById = computed((statusId) => statuses.find( status => status.id === statusId))
+  const getStatusById = computed(() => (statusId) => statuses.value.find( status => status.id === statusId))
 
   const getAll = computed(() => statuses);
   async function setAll() {
-    const  { data } = await axios.get('api/statuses');
+    const  { data } = await axios.get('api/status');
     statuses.value = data;
   }
 
-  return{statuses, getStatusById, getAll, setAll}
+  return{getStatusById, getAll, setAll}
 })

@@ -2,24 +2,16 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue';
 
 export const useResponseStore = defineStore('response-store', () => {
-  const responses = ref( [{
-    id: 1,
-    content: 'test answer',
-    ticketId: 1,
-  },
-  {
-    id: 2,
-    content: 'test2',
-    ticketId: 1,
-  },
-  ])
-  const nextId = ref(8)
-  const getResponseByTicketId = computed((ticketId) => responses.filter( response => response.ticketId === ticketId))
+  const responses = ref( [])
+  
+  const getResponseByTicketId = computed(() => (ticketId) => responses.value.filter( response => response.ticketId === ticketId))
+
+  const getAll = computed(() => responses);
+  async function setAll() {
+    const  { data } = await axios.get('api/response');
+    responses.value = data;
+  }
   
 
-  function addResponse(payload) {
-    response.push({  content: payload.content, ticketId: payload.ticketId, id: this.nextId++ })
-  }
-
-  return { responses, getResponseByTicketId, addResponse, nextId}
+  return { responses, getResponseByTicketId, getAll, setAll}
 })

@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useTicketStore } from "../../store/ticket.js";
 import { useAuthStore } from "../../store/auth.js";
 import { useTicketCategoryStore } from "../../store/ticketcategory.js";
@@ -49,9 +49,15 @@ import { storeToRefs } from "pinia";
 const ticketStore = useTicketStore();
 const authStore = useAuthStore();
 const { adminCheck } = authStore;
-console.log(ticketStore.getAll);
+
+const ticketId = 2;
 
 const tickets = ticketStore.getAll;
+
+const ticket = ref(ticketStore.getTicketById(parseInt(ticketId)));
+
+console.log(ticket);
+console.log(tickets);
 
 ticketStore.setAll();
 </script>
