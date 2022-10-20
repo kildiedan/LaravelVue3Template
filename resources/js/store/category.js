@@ -3,20 +3,30 @@ import { ref, computed } from 'vue';
 import { useTicketCategoryStore } from './ticketCategory.js'
 
 export const useCategoryStore = defineStore('category-store', () => {
-  const categories = ref( [])
+  const categories = ref([])
+  const category = ref([])
 
-  const getCategoryById = computed(() => (categoryId) => categories.value.find( category => category.id === categoryId))
-  
+  const getCategoryById = categoryId => computed(() => categories.value.find( category => category.id === categoryId))
+  const getAll = computed(() => categories);
+  const getCategory = computed(() => category);
 
-  function addCategory(payload) {
-    categories.push({ name: payload.name, id: this.nextId++ })
+  async function addCategory(payload) {
+    try{
+      await axios.post('api/category', payload);
+    }
+    catch(error) {
+      alert(error)
+      console.log(error)
+    }
   }
-  function deleteCategory(index, id){
+  async function deleteCategory(category){
     const ticketCategoryStore = useTicketCategoryStore();
     const ticketCategories = ticketCategoryStore.getAll
-    if (ticketCategories.filter( ticket => ticket.categoryId === id).length === 0 ){
+    if (ticketCategories.value.filter( ticket => ticket.categoryId === category.id).length === 0 ){
       if(confirm("Do you really want to delete?")){
-        this.categories.splice(index, 1)
+        const  { data } = await axios.post('api/category/delete', category);
+        categories.value = data;
+        
       }
     }
     else{
@@ -24,11 +34,15 @@ export const useCategoryStore = defineStore('category-store', () => {
     }
     
   }
-  const getAll = computed(() => categories);
+  async function updateCategory(category){
+    const  { data } =await axios.post('api/category/update', category);
+    categories.value = data;
+  }
+  
   async function setAll() {
     const  { data } = await axios.get('api/category');
     categories.value = data;
   }
 
-  return { getCategoryById, getAll, setAll, addCategory, deleteCategory}
+  return { getCategoryById, getAll, getCategory, setAll, addCategory, deleteCategory, updateCategory}
 })

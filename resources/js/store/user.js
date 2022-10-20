@@ -7,7 +7,7 @@ const baseUrl = `${import.meta.env.VITE_API_URL}/users`;
 
 export const useUserStore = defineStore('user-store', () => {
   const users = ref([]);
-  const getUserById = computed(() => (userId) => users.value.find( user => user.id === userId))
+  const getUserById =  userId => computed(()  => users.value.find( user => user.id === userId))
   
   const getAll = computed(() => users);
   async function setAll() {

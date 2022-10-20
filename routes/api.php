@@ -22,8 +22,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('tickets', [TicketController::class, 'index']);
 Route::post('tickets', [TicketController::class, 'store']);
+Route::get('tickets/show', [TicketController::class, 'show']);
 
 Route::get('/category', [CategoryController::class, 'index']);
+Route::post('/category', [CategoryController::class, 'store']);
+Route::post('/category/delete', [CategoryController::class, 'delete']);
+Route::post('/category/update', [CategoryController::class, 'update']);
+Route::post('/category/show', [CategoryController::class, 'show']);
 
 Route::get('/response', [ResponseController::class, 'index']);
 

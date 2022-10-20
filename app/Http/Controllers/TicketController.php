@@ -13,6 +13,17 @@ class TicketController extends Controller
         $Ticket = Ticket::all();
         return $Ticket;
     }
+    public function show(Request $request)
+    {
+        $Ticket = Ticket::find(10);
+        return $Ticket;
+    }
+    public function update(Request $request)
+    {
+        $Ticket = Ticket::findOrFail($request->id)->update($request->all());
+
+        return $Ticket;
+    }
     public function delete(Request $request)
     {
         $Ticket = Ticket::findOrFail($request->id)->delete();
@@ -20,17 +31,17 @@ class TicketController extends Controller
     }
     public function store(Request $request)
     {
-        // $validated = $this->validate($request, [
-        //     'title' => 'required',
-        //     'content' => 'required',
-        //     'createdBy' => 'required',
-        // ]);
+        $validated = $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required',
+            'createdBy' => 'required',
+        ]);
 
         $Ticket = Ticket::create([
-            'title' => $request['title'],
-            'content' => $request['content'],
+            'title' => $validated['title'],
+            'content' => $validated['content'],
             'assigendTo' => null,
-            'createdBy' => $request['createdBy'],
+            'createdBy' => $validated['createdBy'],
             'status_id' => 1,
 
         ]);

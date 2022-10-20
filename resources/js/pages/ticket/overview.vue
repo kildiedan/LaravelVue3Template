@@ -4,9 +4,11 @@
     <table>
         <tr>
             <th>id</th>
-            <th>naam</th>
-            <th>category</th>
+            <th>title</th>
+            <th>categorieën</th>
             <th>created by</th>
+            <th>created at</th>
+            <th>updated at</th>
             <th>assigend to</th>
             <th v-if="adminCheck()">edit</th>
         </tr>
@@ -21,6 +23,14 @@
                 </td>
                 <td></td>
                 <td>{{ ticket.createdBy }}</td>
+                <td>
+                    {{ new Date(ticket.created_at).toLocaleDateString() }}
+                    {{ new Date(ticket.created_at).toLocaleTimeString() }}
+                </td>
+                <td>
+                    {{ new Date(ticket.updated_at).toLocaleDateString() }}
+                    {{ new Date(ticket.updated_at).toLocaleTimeString() }}
+                </td>
                 <td>{{ ticket.assigendTo }}</td>
                 <td v-if="adminCheck()">
                     <button
@@ -50,14 +60,14 @@ const ticketStore = useTicketStore();
 const authStore = useAuthStore();
 const { adminCheck } = authStore;
 
-const ticketId = 2;
-
 const tickets = ticketStore.getAll;
 
-const ticket = ref(ticketStore.getTicketById(parseInt(ticketId)));
-
-console.log(ticket);
-console.log(tickets);
-
 ticketStore.setAll();
+
+// printDate: function () {
+//             return new Date().toLocaleDateString();
+//           },
+//           printTime: function () {
+//             return new Date().toLocaleTimeString();
+//           },
 </script>

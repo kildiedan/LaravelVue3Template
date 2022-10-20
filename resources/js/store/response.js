@@ -4,7 +4,7 @@ import { ref, computed } from 'vue';
 export const useResponseStore = defineStore('response-store', () => {
   const responses = ref( [])
   
-  const getResponseByTicketId = computed(() => (ticketId) => responses.value.filter( response => response.ticketId === ticketId))
+  const getResponseByTicketId = ticketId => computed(() => responses.value.filter( response => response.ticketId === ticketId))
 
   const getAll = computed(() => responses);
   async function setAll() {

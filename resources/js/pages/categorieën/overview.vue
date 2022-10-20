@@ -23,9 +23,7 @@
                 </button>
             </td>
             <td>
-                <button @click="deleteCategory(index, category.id)">
-                    delete
-                </button>
+                <button @click="deleteCategory(category)">delete</button>
             </td>
         </tr>
     </table>

@@ -18,4 +18,25 @@ class CategoryController extends Controller
         $Category = Category::findOrFail($request->id)->delete();
         return Category::all();
     }
+    public function update(Request $request)
+    {
+
+        $validated = $this->validate($request, [
+            'title' => 'required',
+        ]);
+        Category::findOrFail($request->id)->update($request->all());
+
+        return Category::all();
+    }
+    public function store(Request $request)
+    {
+
+        $validated = $this->validate($request, [
+            'title' => 'required',
+        ]);
+
+        $Category = Category::create([
+            'title' => $request['title'],
+        ]);
+    }
 }

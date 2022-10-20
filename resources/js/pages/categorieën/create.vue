@@ -1,11 +1,11 @@
 <template>
     <p>name</p>
-    <input type="string" v-model="category.name" />
-    <button @click="$router.push('/')">Annuleren</button>
+    <input type="string" v-model="category.title" />
+    <button @click="$router.push('/category')">Annuleren</button>
     <button
         @click="
-            addCategory(category);
-            $router.push('/');
+            store.addCategory(category);
+            $router.push('/category');
         "
     >
         Toevoegen
@@ -19,7 +19,6 @@ import { storeToRefs } from "pinia";
 
 const store = useCategoryStore();
 const category = ref({
-    name: "",
+    title: "",
 });
-const { addCategory } = store;
 </script>

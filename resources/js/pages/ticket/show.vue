@@ -15,32 +15,28 @@ const ticketCategoryStore = useTicketCategoryStore();
 const categoryStore = useCategoryStore();
 const statusStore = useStatusStore();
 const responseStore = useResponseStore();
-const route = useRoute();
-
-ticketStore.setAll();
-const ticket = ref(ticketStore.getTicketById(parseInt(route.params.id)));
-
-ticketCategoryStore.setAll();
-const ticketCategory = ticketCategoryStore.getTicketCategoryByTicketId(
-    parseInt(route.params.id)
-);
-
-responseStore.setAll();
-const responses = responseStore.getResponseByTicketId(
-    parseInt(route.params.id)
-);
-
 const authStore = useAuthStore();
 const userStore = useUserStore();
 
-userStore.setAll();
-const users = userStore.getAll;
+const route = useRoute();
 
+ticketStore.setAll();
+ticketCategoryStore.setAll();
+categoryStore.setAll();
 statusStore.setAll();
-const statuses = statusStore.getAll;
+responseStore.setAll();
+userStore.setAll();
 
-const { getUserName } = userStore;
-const { adminCheck } = authStore;
+const users = userStore.getAll;
+const responses = responseStore.getAll;
+const statuses = statusStore.getAll;
+const category = categoryStore.getAll;
+const ticket = ticketStore.getTicketById(parseInt(route.params.id));
+const status = statusStore.getStatusById(ticket.status_id);
+
+const ticketCategory = ticketCategoryStore.getTicketCategoryByTicketId(
+    parseInt(route.params.id)
+);
 </script>
 
 <template>
@@ -57,13 +53,13 @@ const { adminCheck } = authStore;
         {{ categoryStore.getCategoryById(ticketCategory.categoryId).title }}
     </p>
     <h3>status</h3>
-    <select v-if="adminCheck()" v-model="ticket.status">
+    <select v-if="authStore.adminCheck()" v-model="ticket.status_id">
         <option disabled value="0">empty</option>
         <option v-for="status in statuses" v-bind:value="status.id">
             {{ status.title }}
         </option>
     </select>
-    <p v-else>{{ statusStore.getStatusById(ticket.status).title }}</p>
+    <p v-else>{{ ticket.status_id }}</p>
 
     <h3>content</h3>
     <p>{{ ticket.content }}</p>
@@ -72,23 +68,33 @@ const { adminCheck } = authStore;
     <p>{{ ticket.createdBy }}</p>
 
     <h3>assigend to</h3>
-    <select v-if="adminCheck()" v-model="ticket.assigendTo">
+    <select v-if="authStore.adminCheck()" v-model="ticket.assigendTo">
         <option disabled value="0">empty</option>
         <option v-for="user in users" v-bind:value="user.id">
             {{ user.firstName }} {{ user.lastName }}
         </option>
     </select>
-    <p v-else>{{ getUserName(ticket.assigendTo) }}</p>
+    <p v-else>{{ userStore.getUserName(ticket.assigendTo) }}</p>
     <h3>created at</h3>
-    <p>{{ ticket.createdAt }}</p>
+    <p>
+        {{ new Date(ticket.created_at).toLocaleDateString() }}
+        {{ new Date(ticket.created_at).toLocaleTimeString() }}
+    </p>
     <h3>updated at</h3>
-    <p>{{ ticket.updatedAt }}</p>
+    <p>
+        {{ new Date(ticket.updated_at).toLocaleDateString() }}
+        {{ new Date(ticket.updated_at).toLocaleTimeString() }}
+    </p>
 
     <h3>responses</h3>
     <template v-for="(response, index) in responses" :key="response.id">
-        <p>
-            {{ response.content }}
-        </p>
-        <button @click="">edit response</button>
+        <div v-if="response.ticket_id === ticket.id">
+            <p>
+                {{ response.content }}
+            </p>
+            <button v-if="authStore.adminCheck()" @click="">
+                edit response
+            </button>
+        </div>
     </template>
 </template>

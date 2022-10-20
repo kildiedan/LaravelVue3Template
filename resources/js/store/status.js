@@ -15,7 +15,7 @@ export const useStatusStore = defineStore('status-store', () => {
     title: 'Afgehandeld',
   }
   ])
-  const getStatusById = computed(() => (statusId) => statuses.value.find( status => status.id === statusId))
+  const getStatusById = statusId => computed(() =>  statuses.value.find( status => status.id === statusId))
 
   const getAll = computed(() => statuses);
   async function setAll() {
