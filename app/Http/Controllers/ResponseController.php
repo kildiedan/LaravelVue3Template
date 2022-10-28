@@ -18,4 +18,10 @@ class ResponseController extends Controller
         $Response = Response::findOrFail($request->id)->delete();
         return Response::all();
     }
+    public function update(Request $request)
+    {
+        $Response = Response::findOrFail($request->id)->update($request->all());
+
+        return $Response;
+    }
 }

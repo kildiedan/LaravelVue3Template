@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->longText('content');
             $table->foreignId('status_id');
-            $table->foreignId('createdBy');
-            $table->foreignId('assigendTo')->nullable();
+            $table->foreignId('created_by');
+            $table->foreignId('assigend_to')->nullable();
             $table->timestamps();
         });
     }

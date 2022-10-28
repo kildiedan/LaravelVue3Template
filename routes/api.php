@@ -31,6 +31,7 @@ Route::post('/category/update', [CategoryController::class, 'update']);
 Route::post('/category/show', [CategoryController::class, 'show']);
 
 Route::get('/response', [ResponseController::class, 'index']);
+Route::post('/response/update', [ResponseController::class, 'update']);
 
 Route::get('/status', [StatusController::class, 'index']);
 

@@ -35,7 +35,7 @@ export const router = createRouter({
   { path: '/category/edit/:id', name: 'categoryEdit', component: EditCategory },
   { path: '/category/create', name: 'categoryCreate', component: CreateCategory },
 
-  { path: '/response/edit/:id', name: 'response', component: EditResponse },
+  { path: '/response/edit/:id', name: 'responseEdit', component: EditResponse },
 
   { path: '/user', name: 'userHome', component: OverviewUser },
   // { path: '/account/login', name: 'login', component: Login },

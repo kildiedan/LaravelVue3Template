@@ -1,14 +1,22 @@
 <template>
-  <h2>responses</h2>
+    <h2>responses</h2>
 
-  <h3>content</h3>
-  <input type="string" v-model="response.content" />
-  <button @click="{ name: 'ticketShow', params: { id: response.ticketId } }">
-    Annuleren
-  </button>
-  <button @click="{ name: 'ticketShow', params: { id: response.ticketId } }">
-    Aanpassen
-  </button>
+    <h3>content</h3>
+    <input type="string" v-model="response.content" />
+    <button @click="{ name: 'ticketShow', params: { id: response.ticket_id } }">
+        Annuleren
+    </button>
+    <button
+        @click="
+            responseStore.updateResponse(response);
+            $router.push({
+                name: 'ticketShow',
+                params: { id: response.ticket_id },
+            });
+        "
+    >
+        Aanpassen
+    </button>
 </template>
 
 <script setup>
@@ -19,6 +27,9 @@ import { useRoute } from "vue-router";
 
 const responseStore = useResponseStore();
 const route = useRoute();
-const responseId = parseInt(route.params.id);
-const response = responseStore.getResponseByTicketId(responseId);
+
+responseStore.setAll();
+
+const response = responseStore.getResponseId(parseInt(route.params.id));
+console.log(response);
 </script>

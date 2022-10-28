@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Response;
 use App\Models\Status;
 use App\Models\Ticket;
+use App\Models\TicketCategory;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -31,5 +32,6 @@ class DatabaseSeeder extends Seeder
         Response::factory()->count(10)->create();
         Category::factory()->count(10)->create();
         Ticket::factory()->count(10)->create();
+        TicketCategory::factory()->count(30)->create();
     }
 }

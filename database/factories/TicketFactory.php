@@ -21,8 +21,8 @@ class TicketFactory extends Factory
 
             'title' => fake()->sentence(),
             'content' => fake()->paragraph(),
-            'assigendTo' => rand(1, 10),
-            'createdBy' => rand(1, 10),
+            'assigend_to' => rand(1, 10),
+            'created_by' => rand(1, 10),
             'status_id' => rand(1, 3),
 
         ];
