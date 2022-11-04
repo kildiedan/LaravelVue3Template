@@ -15,8 +15,12 @@ export const useResponseStore = defineStore('response-store', () => {
     const  { data } =await axios.post('api/response/update', response);
     responses.value = data;
   }
+  async function createResponse(payload){
+    const  { data } =await axios.post('api/response/create', payload);
+    responses.value = data;
+  }
   
   
 
-  return { responses, getResponseId, getAll, setAll, updateResponse}
+  return { responses, getResponseId, getAll, setAll, updateResponse, createResponse}
 })

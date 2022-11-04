@@ -6,13 +6,17 @@
 
     <h3>content</h3>
     <input type="string" v-model="ticket.content" />
-
-    <h3>assigend to</h3>
-    <input type="number" v-model="ticket.assigendTo" />
-    <button @click="{ name: 'ticketShow', params: { id: ticketId } }">
+    <button
+        @click="$router.push({ name: 'ticketShow', params: { id: ticketId } })"
+    >
         Annuleren
     </button>
-    <button @click="{ name: 'ticketShow', params: { id: ticketId } }">
+    <button
+        @click="
+            ticketStore.updateTicket(ticket);
+            $router.push({ name: 'ticketShow', params: { id: ticketId } });
+        "
+    >
         Aanpassen
     </button>
 </template>

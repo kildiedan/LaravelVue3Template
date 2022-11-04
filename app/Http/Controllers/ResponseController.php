@@ -24,4 +24,20 @@ class ResponseController extends Controller
 
         return $Response;
     }
+    public function store(Request $request)
+    {
+        $validated = $this->validate($request, [
+            'user_id' => 'required',
+            'content' => 'required',
+            'ticket_id' => 'required',
+        ]);
+
+        $Response = Response::create([
+            'content' => $validated['content'],
+            'user_id' => $validated['user_id'],
+            'ticket_id' => $validated['ticket_id'],
+        ]);
+
+        return Response::all();
+    }
 }

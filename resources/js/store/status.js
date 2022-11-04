@@ -23,5 +23,5 @@ export const useStatusStore = defineStore('status-store', () => {
     statuses.value = data;
   }
 
-  return{getStatusById, getAll, setAll}
+  return{getStatusById, getAll, setAll, statuses}
 })

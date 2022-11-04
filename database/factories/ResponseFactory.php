@@ -19,6 +19,7 @@ class ResponseFactory extends Factory
         return [
             'content' => fake()->paragraph(),
             'ticket_id' => rand(1, 10),
+            'user_id' => rand(1, 10),
         ];
     }
 }

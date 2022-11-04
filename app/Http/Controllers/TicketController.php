@@ -10,7 +10,7 @@ class TicketController extends Controller
     //
     public function index()
     {
-        $Ticket = Ticket::all();
+        $Ticket = Ticket::orderBy("created_at", "asc")->get();
         return $Ticket;
     }
     public function show(Request $request)
@@ -20,9 +20,7 @@ class TicketController extends Controller
     }
     public function update(Request $request)
     {
-        $Ticket = Ticket::findOrFail($request->id)->update($request->all());
-
-        return $Ticket;
+        Ticket::findOrFail($request->id)->update($request->all());
     }
     public function delete(Request $request)
     {
@@ -34,14 +32,14 @@ class TicketController extends Controller
         $validated = $this->validate($request, [
             'title' => 'required',
             'content' => 'required',
-            'createdBy' => 'required',
+            'created_by' => 'required',
         ]);
 
         $Ticket = Ticket::create([
             'title' => $validated['title'],
             'content' => $validated['content'],
-            'assigendTo' => null,
-            'createdBy' => $validated['createdBy'],
+            'assigend_to' => null,
+            'created_by' => $validated['created_by'],
             'status_id' => 1,
 
         ]);

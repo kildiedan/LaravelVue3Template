@@ -10,11 +10,16 @@ class Response extends Model
     use HasFactory;
 
     protected $fillable = [
-        'content'
+        'content', 'ticket_id', 'user_id'
     ];
 
     public function tickets()
     {
         return $this->belongsTo(Ticket::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(user::class);
     }
 }

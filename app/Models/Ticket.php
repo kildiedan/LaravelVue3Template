@@ -10,7 +10,7 @@ class Ticket extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'content', 'assigendTo', 'createdBy', 'status_id'
+        'title', 'content', 'assigend_to', 'created_by', 'status_id'
     ];
 
     public function categories()
