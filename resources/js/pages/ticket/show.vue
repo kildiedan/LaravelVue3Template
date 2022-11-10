@@ -107,12 +107,6 @@ const userStore = useUserStore();
 
 const route = useRoute();
 
-const response = ref({
-    content: "",
-    user_id: 1,
-    ticket_id: parseInt(route.params.id),
-});
-
 ticketStore.setAll();
 ticketCategoryStore.setAll();
 categoryStore.setAll();
@@ -130,5 +124,13 @@ const status = statusStore.getStatusById(ticket.status_id);
 const ticketCategory = ticketCategoryStore.getTicketCategoryByTicketId(
     parseInt(route.params.id)
 ).value;
-// const root<HtmlElement | null>(null)
+
+const response = ref({
+    content: "",
+    user_id: 1,
+    ticket_id: parseInt(route.params.id),
+    email: userStore.getUserById(
+        ticketStore.getTicketById(parseInt(route.params.id)).value.created_by
+    ).value.email,
+});
 </script>

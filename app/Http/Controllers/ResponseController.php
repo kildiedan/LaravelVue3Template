@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ResponseController extends Controller
 {
@@ -30,6 +31,7 @@ class ResponseController extends Controller
             'user_id' => 'required',
             'content' => 'required',
             'ticket_id' => 'required',
+            'email' => 'required',
         ]);
 
         $Response = Response::create([
@@ -37,6 +39,8 @@ class ResponseController extends Controller
             'user_id' => $validated['user_id'],
             'ticket_id' => $validated['ticket_id'],
         ]);
+
+        // Mail::to($validated['email'])->send(new \App\mail\ResponseMail($Response));
 
         return Response::all();
     }

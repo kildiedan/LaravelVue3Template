@@ -16,9 +16,9 @@ class ResponseMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -28,6 +28,6 @@ class ResponseMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->subject('ticket response')->view('view.name');
     }
 }
