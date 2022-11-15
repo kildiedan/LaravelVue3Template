@@ -1,0 +1,47 @@
+{
+  "hash": "18ca0b78",
+  "browserHash": "94984d9e",
+  "optimized": {
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "636ed1ac",
+      "needsInterop": true
+    },
+    "vue": {
+      "src": "../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "43e54a27",
+      "needsInterop": false
+    },
+    "moment": {
+      "src": "../../node_modules/moment/dist/moment.js",
+      "file": "moment.js",
+      "fileHash": "e1a1857f",
+      "needsInterop": true
+    },
+    "pinia": {
+      "src": "../../node_modules/pinia/dist/pinia.mjs",
+      "file": "pinia.js",
+      "fileHash": "dd464d6d",
+      "needsInterop": false
+    },
+    "vue-router": {
+      "src": "../../node_modules/vue-router/dist/vue-router.mjs",
+      "file": "vue-router.js",
+      "fileHash": "7d81ff0b",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-BOM43CDS": {
+      "file": "chunk-BOM43CDS.js"
+    },
+    "chunk-TPZSGKWL": {
+      "file": "chunk-TPZSGKWL.js"
+    },
+    "chunk-7FP5O474": {
+      "file": "chunk-7FP5O474.js"
+    }
+  }
+}

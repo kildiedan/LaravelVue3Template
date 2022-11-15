@@ -2,12 +2,12 @@
     <h2>tickets</h2>
 
     <h3>titel</h3>
-    <p>{{ ticket?.title }}</p>
+    <p>{{ ticket.title }}</p>
 
     <h3>categories</h3>
     <p
         v-for="Category in ticketCategoryStore.getTicketCategoryByTicketId(
-            ticket?.id
+            ticket.id
         ).value"
     >
         {{ categoryStore.getCategoryById(Category.categorie_id).value.title }}
@@ -21,14 +21,14 @@
         </option>
     </select>
     <p v-else>
-        {{ statusStore.getStatusById(ticket?.status_id)?.value.title }}
+        {{ statusStore.getStatusById(ticket.status_id).value.title }}
     </p>
 
     <h3>content</h3>
     <p>{{ ticket?.content }}</p>
 
     <h3>created by</h3>
-    <p>{{ userStore.getUserById(ticket?.created_by).value.name }}</p>
+    <p>{{ userStore.getUserById(ticket.created_by).value.name }}</p>
 
     <h3>assigend to</h3>
     <select v-if="authStore.adminCheck()" v-model="ticket.assigend_to">
@@ -37,7 +37,7 @@
             {{ user.name }}
         </option>
     </select>
-    <p v-else>{{ userStore.getUserById(ticket?.assigend_to).value.name }}</p>
+    <p v-else>{{ userStore.getUserById(ticket.assigend_to).value.name }}</p>
     <h3>created at</h3>
     <p>
         {{ new Date(ticket.created_at).toLocaleDateString() }}

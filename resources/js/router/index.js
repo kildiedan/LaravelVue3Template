@@ -13,7 +13,7 @@ import EditTicket from '../pages/ticket/edit.vue'
 import ShowTicket from '../pages/ticket/show.vue'
 
 import EditResponse from '../pages/response/edit.vue'
-import CreateResponse from '../pages/response/create.vue'
+
 
 import OverviewUser from '../pages/user/userhome.vue'
 // import Login from '../pages/auth/login.vue'
@@ -37,7 +37,6 @@ export const router = createRouter({
   { path: '/category/create', name: 'categoryCreate', component: CreateCategory },
 
   { path: '/response/edit/:id', name: 'responseEdit', component: EditResponse },
-  { path: '/response/create', name: 'responseCreate', component: CreateResponse },
 
   { path: '/user', name: 'userHome', component: OverviewUser },
   // { path: '/account/login', name: 'login', component: Login },
