@@ -2,7 +2,6 @@
 import { useAuthStore } from "./store/auth.js";
 
 const authStore = useAuthStore();
-const { adminCheck } = authStore;
 </script>
 <template>
     <h1>Laravel 9 & Vue3</h1>

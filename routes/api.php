@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ResponseController;
 use App\Http\Controllers\StatusController;
@@ -40,3 +42,5 @@ Route::get('/status', [StatusController::class, 'index']);
 Route::get('/ticketsCategory', [TicketCategoryController::class, 'index']);
 
 Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/register', [RegisterController::class, 'create']);
+Route::get('/user/login', [LoginController::class, 'vuelogin']);

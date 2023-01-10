@@ -16,8 +16,8 @@ import EditResponse from '../pages/response/edit.vue'
 
 
 import OverviewUser from '../pages/user/userhome.vue'
-// import Login from '../pages/auth/login.vue'
-// import Register from '../pages/auth/register.vue'
+import Login from '../pages/auth/login.vue'
+import Register from '../pages/auth/register.vue'
 
 
 
@@ -39,8 +39,8 @@ export const router = createRouter({
   { path: '/response/edit/:id', name: 'responseEdit', component: EditResponse },
 
   { path: '/user', name: 'userHome', component: OverviewUser },
-  // { path: '/account/login', name: 'login', component: Login },
-  // { path: '/account/register', name: 'register', component: Register },
+  { path: '/account/login', name: 'login', component: Login },
+  { path: '/account/register', name: 'register', component: Register },
   
 ]
 });

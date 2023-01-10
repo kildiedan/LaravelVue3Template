@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue';
-// import { useAuthStore } from './auth.js';
 
 export const useUserStore = defineStore('user-store', () => {
   const users = ref([]);
@@ -13,7 +12,12 @@ export const useUserStore = defineStore('user-store', () => {
     const  { data } = await axios.get('api/user');
     users.value = data;
   }
+  async function register(payload) {
 
-  return { users, getAll, getUserById, setAll }
+    console.log(payload);
+    await axios.post('api/user/register', payload);
+  }
+
+  return { users, getAll, getUserById, setAll, register }
 })
     
